@@ -1,6 +1,7 @@
-package com.studybuddyserver;
+package com.studybuddyserver.matching;
 
-import java.awt.*;
+import com.studybuddyserver.User;
+
 import java.util.List;
 import java.util.ArrayList;
 

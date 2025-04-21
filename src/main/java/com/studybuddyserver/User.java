@@ -1,4 +1,7 @@
 package com.studybuddyserver;
+import com.studybuddyserver.matching.Match;
+import com.studybuddyserver.matching.MatchIterator;
+
 import java.util.ArrayList;
 import java.util.List;
 

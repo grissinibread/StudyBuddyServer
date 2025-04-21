@@ -1,4 +1,4 @@
-package com.studybuddyserver;
+package com.studybuddyserver.matching;
 
 import java.util.List;
 
