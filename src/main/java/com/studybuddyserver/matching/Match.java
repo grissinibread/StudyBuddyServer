@@ -19,7 +19,7 @@ public class Match {
         this.major = user.getMajor();
         this.gradYr = user.getGradYr();
         // add all 3 interests
-        this.interests.add(user.getInterest(0)); this.interests.add(user.getInterest(1)); this.interests.add(user.getInterest(2));
+//        this.interests.add(user.getInterest(0)); this.interests.add(user.getInterest(1)); this.interests.add(user.getInterest(2));
         this.score = score;
     }
 }
