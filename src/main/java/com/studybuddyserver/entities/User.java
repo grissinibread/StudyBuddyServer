@@ -1,14 +1,26 @@
-package com.studybuddyserver;
+package com.studybuddyserver.entities;
 import com.studybuddyserver.matching.Match;
 import com.studybuddyserver.matching.MatchIterator;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@Entity
+@Document(collection = "SB_users")
 public class User {
+    @Id
+    private Long id;
+
     private String name;
     private String fname;
     private String lname;
+    //cannot be edited
     private Integer age; //not changeable after sign up
     private String major;
     private Integer gradYr;
@@ -32,38 +44,38 @@ public class User {
         this.interests.add(interest1); this.interests.add(interest2); this.interests.add(interest3);
         this.email = email; this.password = password;
     }
+
+    public User() {
+
+    }
+
     // required for signup, but can be edited later
     public void editName(String fname, String lname) {
         this.fname = fname; this.lname = lname;
         this.name = fname + " " + lname;
     }
     public String getName(char indicator) { // char = f for fname, l for lname, n for full name
-        return switch (indicator) {
-            case 'f' -> fname;
-            case 'l' -> lname;
-            case 'n' -> name;
-            default -> null;
-        };
+        switch (indicator) {
+            case 'f': return fname;
+            case 'l': return lname;
+            case 'n': return name;
+            default: return null;
+        }
     }
 
-    public Integer getAge() { return this.age; } //cannot be edited
-
     public void editMajor(String major) { this.major = major; }
-    public String getMajor() { return major; }
 
     public void editGradYr(Integer gradYr) { this.gradYr = gradYr; }
-    public Integer getGradYr() { return gradYr; }
 
     public void editEmail(String email) { this.email = email; }
-    public String getEmail() { return email; }
 
     public void editPassword(String password) { this.password = password; }
-    public String getPassword() { return password; }
 
     public void editInterest(String interest1, String interest2, String interest3) {
         this.interest1 = interest1; this.interest2 = interest2; this.interest3 = interest3;
         this.interests.add(interest1); this.interests.add(interest2); this.interests.add(interest3);
     }
+
     public String getInterest(int i) { return interests.get(i); }
 
     // not required during sign up but encouraged later
@@ -71,11 +83,12 @@ public class User {
         // TODO: set a char count on the bio, maybe will be done here, maybe in edit profile page
         this.bio = bio;
     }
-    public String getBio() { return bio; }
 
+    public String getBio() { return bio; }
     public void setMatches(List<Match> matches) { this.matches = matches; }
     public List<Match> getMatches() { return matches; }
 
     //iterator pattern
     public MatchIterator getMatchIterator(){ return new MatchIterator(matches); }
+
 }

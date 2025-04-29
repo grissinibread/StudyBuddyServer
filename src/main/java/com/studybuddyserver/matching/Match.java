@@ -1,6 +1,6 @@
 package com.studybuddyserver.matching;
 
-import com.studybuddyserver.User;
+import com.studybuddyserver.entities.User;
 import java.util.ArrayList;
 import java.util.List;
 
