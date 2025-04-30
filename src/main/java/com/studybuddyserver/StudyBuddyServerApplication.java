@@ -16,10 +16,10 @@ public class StudyBuddyServerApplication {
 
         // This is how you create a user.
         var user = User.builder()
-                .firstName("John")
-                .lastName("Doe")
-                .email("john420@csusm.edu")
-                .password("Something")
+                .firstName("Johnny")
+                .lastName("Qi")
+                .email("qi004@csusm.edu")
+                .password("gilligandsisland")
                 .build();
 
         repository.save(user);
