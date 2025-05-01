@@ -1,14 +1,33 @@
 package com.studybuddyserver.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.bson.types.ObjectId;
 
-@AllArgsConstructor
-@Getter
 public class UserDto {
-    private ObjectId id;
-    private String firstName;
-    private String lastName;
-    private String email;
+    private final ObjectId id;
+    private final String firstName;
+    private final String lastName;
+    private final String email;
+
+    public UserDto(ObjectId id, String firstName, String lastName, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    public ObjectId getId() {
+        return this.id;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
 }
