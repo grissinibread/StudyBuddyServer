@@ -23,7 +23,7 @@ import java.util.List;
 public class User {
     @Id
     @Field("_id")
-    private ObjectId Id;
+    private String Id;
 
     @Field("fname")
     private String firstName;

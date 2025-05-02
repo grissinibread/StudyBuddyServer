@@ -5,7 +5,7 @@ import org.bson.types.ObjectId;
 
 @Data
 public class UpdateUserRequest {
-    private ObjectId Id;
+    private String Id;
     private String firstName;
     private String lastName;
     private String email;
