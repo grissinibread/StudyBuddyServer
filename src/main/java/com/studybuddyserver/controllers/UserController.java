@@ -1,12 +1,13 @@
 package com.studybuddyserver.controllers;
 
+import com.studybuddyserver.dtos.RegisterUserRequest;
 import com.studybuddyserver.dtos.UserDto;
-import com.studybuddyserver.entities.User;
 import com.studybuddyserver.mappers.UserMapper;
 import com.studybuddyserver.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @AllArgsConstructor
@@ -32,21 +33,16 @@ public class UserController {
         return ResponseEntity.ok(userMapper.toDto(user));
     }
 
-    @PostMapping("/addUser")
-    public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto) {
-        var user = User.builder()
-                .firstName(userDto.getFirstName())
-                .lastName(userDto.getLastName())
-                .email(userDto.getEmail())
-                .build();
-
+    @PostMapping
+    public ResponseEntity<UserDto> createUser(@RequestBody RegisterUserRequest register, UriComponentsBuilder uriBuilder) {
+        var user = userMapper.toEntity(register);
         var savedUser = userRepository.save(user);
 
-        return ResponseEntity.ok(userMapper.toDto(savedUser));
-    }
+        System.out.println(savedUser);
+        var userDto = userMapper.toDto(savedUser);
+        var uri = uriBuilder.path("/users/{id}").buildAndExpand(userDto.getId()).toUri();
 
-    private UserDto toDto(User user) {
-        return new UserDto(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail());
+        return ResponseEntity.created(uri).body(userDto);
     }
 }
 

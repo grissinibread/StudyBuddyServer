@@ -1,29 +1,22 @@
 package com.studybuddyserver.entities;
-import com.studybuddyserver.matching.Match;
-import com.studybuddyserver.matching.MatchIterator;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Getter
 @Setter
 @Entity
 @Builder
 @Document(collection = "SB_users")
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class User {
     @Id
     @Field("_id")
-    private String Id;
+    private String id;
 
     @Field("fname")
     private String firstName;
@@ -63,32 +56,77 @@ public class User {
 //        this.major = major; this.gradYr = gradYr;
 //        this.bio = bio;
 //        this.interest1 = interest1; this.interest2 = interest2; this.interest3 = interest3;
-////        this.interests.add(interest1); this.interests.add(interest2); this.interests.add(interest3);
+
+    /// /        this.interests.add(interest1); this.interests.add(interest2); this.interests.add(interest3);
 //        this.email = email; this.password = password;
 //    }
 
     // required for signup, but can be edited later
     public void editName(String fname, String lname) {
-        this.firstName = fname; this.lastName = lname;
+        this.firstName = fname;
+        this.lastName = lname;
 //        this.name = fname + " " + lname;
     }
 
     public String getName(char indicator) { // char = f for fname, l for lname, n for full name
         switch (indicator) {
-            case 'f': return firstName;
-            case 'l': return lastName;
+            case 'f':
+                return firstName;
+            case 'l':
+                return lastName;
 //            case 'n': return name;
-            default: return null;
+            default:
+                return null;
         }
     }
 
-    public void editMajor(String major) { this.major = major; }
+    public void editMajor(String major) {
+        this.major = major;
+    }
 
-    public void editGradYr(Integer gradYr) { this.gradYr = gradYr; }
+    public void editGradYr(Integer gradYr) {
+        this.gradYr = gradYr;
+    }
 
-    public void editEmail(String email) { this.email = email; }
+    public void editEmail(String email) {
+        this.email = email;
+    }
 
-    public void editPassword(String password) { this.password = password; }
+    public void editPassword(String password) {
+        this.password = password;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public Integer getAge() {
+        return this.age;
+    }
+
+    public String getMajor() {
+        return this.major;
+    }
+
+    public Integer getGradYr() {
+        return this.gradYr;
+    }
 
 //    public void editInterest(String interest1, String interest2, String interest3) {
 //        this.interest1 = interest1; this.interest2 = interest2; this.interest3 = interest3;

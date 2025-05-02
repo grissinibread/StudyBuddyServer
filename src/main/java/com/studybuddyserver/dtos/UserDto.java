@@ -1,9 +1,5 @@
 package com.studybuddyserver.dtos;
 
-import lombok.Getter;
-import org.bson.types.ObjectId;
-
-@Getter
 public class UserDto {
     private final String id;
     private final String firstName;
@@ -17,4 +13,19 @@ public class UserDto {
         this.email = email;
     }
 
+    public String getId() {
+        return this.id;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
 }
