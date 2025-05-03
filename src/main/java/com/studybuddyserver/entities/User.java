@@ -2,10 +2,18 @@ package com.studybuddyserver.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
 @Setter
 @Entity
 @Builder
@@ -16,7 +24,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class User {
     @Id
     @Field("_id")
-    private String id;
+    private String Id;
 
     @Field("fname")
     private String firstName;
@@ -56,8 +64,7 @@ public class User {
 //        this.major = major; this.gradYr = gradYr;
 //        this.bio = bio;
 //        this.interest1 = interest1; this.interest2 = interest2; this.interest3 = interest3;
-
-    /// /        this.interests.add(interest1); this.interests.add(interest2); this.interests.add(interest3);
+////        this.interests.add(interest1); this.interests.add(interest2); this.interests.add(interest3);
 //        this.email = email; this.password = password;
 //    }
 
@@ -97,7 +104,7 @@ public class User {
     }
 
     public String getId() {
-        return this.id;
+        return this.Id;
     }
 
     public String getFirstName() {
