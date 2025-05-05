@@ -5,6 +5,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Document(collection = "SB_users")
 public class User {
     @Id
@@ -34,7 +37,13 @@ public class User {
     @Field("gradYear")
     private Integer gradYear;
 
-    public User(ObjectId id, String firstName, String lastName, String email, String password, Integer age, String major, Integer gradYear) {
+    @Field("interests")
+    private List<String> interests;
+
+    @Field("bio")
+    private String bio;
+
+    public User(ObjectId id, String firstName, String lastName, String email, String password, Integer age, String major, Integer gradYear, List<String> interests, String bio) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,17 +52,17 @@ public class User {
         this.age = age;
         this.major = major;
         this.gradYear = gradYear;
+        this.interests = interests;
+        this.bio = bio;
     }
 
     public static UserBuilder builder() {
         return new UserBuilder();
     }
 
-//    private List<String> interests = new ArrayList<String>();
 //    private String interest1;
 //    private String interest2;
 //    private String interest3;
-//    private String bio;
 //    private List<Match> matches = new ArrayList<Match>();
 
 //    public User(String fname, String lname, Integer age, String major, Integer gradYear, String bio, String interest1,
@@ -68,42 +77,6 @@ public class User {
     /// /        this.interests.add(interest1); this.interests.add(interest2); this.interests.add(interest3);
 //        this.email = email; this.password = password;
 //    }
-
-    // required for signup, but can be edited later
-    public void editName(String fname, String lname) {
-        this.firstName = fname;
-        this.lastName = lname;
-//        this.name = fname + " " + lname;
-    }
-
-    public String getName(char indicator) { // char = f for fname, l for lname, n for full name
-        switch (indicator) {
-            case 'f':
-                return firstName;
-            case 'l':
-                return lastName;
-//            case 'n': return name;
-            default:
-                return null;
-        }
-    }
-
-    public void editMajor(String major) {
-        this.major = major;
-    }
-
-    public void editgradYear(Integer gradYear) {
-        this.gradYear = gradYear;
-    }
-
-    public void editEmail(String email) {
-        this.email = email;
-    }
-
-    public void editPassword(String password) {
-        this.password = password;
-    }
-
     public ObjectId getId() {
         return this.id;
     }
@@ -134,6 +107,14 @@ public class User {
 
     public Integer getGradYear() {
         return this.gradYear;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public List<String> getInterests() {
+        return interests;
     }
 
     public void setId(ObjectId id) {
@@ -168,6 +149,18 @@ public class User {
         this.gradYear = gradYear;
     }
 
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setInterests(List<String> interests) {
+        this.interests = interests;
+    }
+
+    public void setGradYear(Integer gradYear) {
+        this.gradYear = gradYear;
+    }
+
     public String toString() {
         return "User(Id=" + this.getId() + ", firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", email=" + this.getEmail() + ", password=" + this.getPassword() + ", age=" + this.getAge() + ", major=" + this.getMajor() + ", gradYear=" + this.getGradYear() + ")";
     }
@@ -182,12 +175,18 @@ public class User {
         private String major;
         private Integer gradYear;
         private ObjectId id;
+        private List<String> interests;
+        private String bio;
 
         UserBuilder() {
         }
 
-        public UserBuilder Id(String Id) {
-            this.Id = Id;
+        public String toString() {
+            return "User.UserBuilder(Id=" + this.Id + ", firstName=" + this.firstName + ", lastName=" + this.lastName + ", email=" + this.email + ", password=" + this.password + ", age=" + this.age + ", major=" + this.major + ", gradYear=" + this.gradYear + ")";
+        }
+
+        public UserBuilder id(ObjectId id) {
+            this.id = id;
             return this;
         }
 
@@ -226,17 +225,18 @@ public class User {
             return this;
         }
 
-        public String toString() {
-            return "User.UserBuilder(Id=" + this.Id + ", firstName=" + this.firstName + ", lastName=" + this.lastName + ", email=" + this.email + ", password=" + this.password + ", age=" + this.age + ", major=" + this.major + ", gradYear=" + this.gradYear + ")";
+        public UserBuilder interests(List<String> interests) {
+            this.interests = interests;
+            return this;
         }
 
-        public UserBuilder id(ObjectId id) {
-            this.id = id;
+        public UserBuilder bio(String bio) {
+            this.bio = bio;
             return this;
         }
 
         public User build() {
-            return new User(this.id, this.firstName, this.lastName, this.email, this.password, this.age, this.major, this.gradYear);
+            return new User(this.id, this.firstName, this.lastName, this.email, this.password, this.age, this.major, this.gradYear, this.interests, this.bio);
         }
     }
 

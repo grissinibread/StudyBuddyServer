@@ -14,7 +14,7 @@ public class Match {
     private double score; // compatibility score
 
     public Match(User user, double score) {
-        this.name = user.getName('f');
+        this.name = user.getFirstName();
         this.age = user.getAge();
         this.major = user.getMajor();
         this.gradYear = user.getGradYear();

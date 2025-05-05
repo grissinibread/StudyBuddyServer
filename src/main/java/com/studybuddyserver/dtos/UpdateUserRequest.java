@@ -1,5 +1,7 @@
 package com.studybuddyserver.dtos;
 
+import java.util.List;
+
 public class UpdateUserRequest {
     private String firstName;
     private String lastName;
@@ -8,13 +10,18 @@ public class UpdateUserRequest {
     private String major;
     private int gradYear;
 
-    public UpdateUserRequest(String firstName, String lastName, String email, int age, String major, int gradYear) {
+    private List<String> interests;
+    private String bio;
+
+    public UpdateUserRequest(String firstName, String lastName, String email, int age, String major, int gradYear, List<String> interests, String bio) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.age = age;
         this.major = major;
         this.gradYear = gradYear;
+        this.interests = interests;
+        this.bio = bio;
     }
 
     public int getAge() {
@@ -47,6 +54,22 @@ public class UpdateUserRequest {
 
     public void setMajor(String major) {
         this.major = major;
+    }
+
+    public List<String> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(List<String> interests) {
+        this.interests = interests;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public void setGradYear(int gradYear) {
