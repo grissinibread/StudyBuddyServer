@@ -6,15 +6,15 @@ public class UpdateUserRequest {
     private String email;
     private int age;
     private String major;
-    private int gradYr;
+    private int gradYear;
 
-    public UpdateUserRequest(String firstName, String lastName, String email, int age, String major, int gradYr) {
+    public UpdateUserRequest(String firstName, String lastName, String email, int age, String major, int gradYear) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.age = age;
         this.major = major;
-        this.gradYr = gradYr;
+        this.gradYear = gradYear;
     }
 
     public int getAge() {
@@ -25,8 +25,8 @@ public class UpdateUserRequest {
         return this.major;
     }
 
-    public int getGradYr() {
-        return this.gradYr;
+    public int getGradYear() {
+        return this.gradYear;
     }
 
     public String getFirstName() {
@@ -49,8 +49,8 @@ public class UpdateUserRequest {
         this.major = major;
     }
 
-    public void setGradYr(int gradYr) {
-        this.gradYr = gradYr;
+    public void setGradYear(int gradYear) {
+        this.gradYear = gradYear;
     }
 
     public void setFirstName(String firstName) {
@@ -83,7 +83,7 @@ public class UpdateUserRequest {
         final Object this$major = this.getMajor();
         final Object other$major = other.getMajor();
         if (this$major == null ? other$major != null : !this$major.equals(other$major)) return false;
-        if (this.getGradYr() != other.getGradYr()) return false;
+        if (this.getGradYear() != other.getGradYear()) return false;
         return true;
     }
 
@@ -103,11 +103,11 @@ public class UpdateUserRequest {
         result = result * PRIME + this.getAge();
         final Object $major = this.getMajor();
         result = result * PRIME + ($major == null ? 43 : $major.hashCode());
-        result = result * PRIME + this.getGradYr();
+        result = result * PRIME + this.getGradYear();
         return result;
     }
 
     public String toString() {
-        return "UpdateUserRequest(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", email=" + this.getEmail() + ", age=" + this.getAge() + ", major=" + this.getMajor() + ", gradYr=" + this.getGradYr() + ")";
+        return "UpdateUserRequest(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", email=" + this.getEmail() + ", age=" + this.getAge() + ", major=" + this.getMajor() + ", gradYear=" + this.getGradYear() + ")";
     }
 }

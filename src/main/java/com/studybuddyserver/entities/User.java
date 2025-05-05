@@ -32,9 +32,9 @@ public class User {
     private String major;
 
     @Field("gradYear")
-    private Integer gradYr;
+    private Integer gradYear;
 
-    public User(ObjectId id, String firstName, String lastName, String email, String password, Integer age, String major, Integer gradYr) {
+    public User(ObjectId id, String firstName, String lastName, String email, String password, Integer age, String major, Integer gradYear) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -42,7 +42,7 @@ public class User {
         this.password = password;
         this.age = age;
         this.major = major;
-        this.gradYr = gradYr;
+        this.gradYear = gradYear;
     }
 
     public static UserBuilder builder() {
@@ -56,12 +56,12 @@ public class User {
 //    private String bio;
 //    private List<Match> matches = new ArrayList<Match>();
 
-//    public User(String fname, String lname, Integer age, String major, Integer gradYr, String bio, String interest1,
+//    public User(String fname, String lname, Integer age, String major, Integer gradYear, String bio, String interest1,
 //                String interest2, String interest3, String email, String password) {
 //        this.name = fname + " " + lname; // whole name (maybe not needed in the end)
 //        this.firstName = fname; this.lastName = lname; // single names
 //        this.age = age;
-//        this.major = major; this.gradYr = gradYr;
+//        this.major = major; this.gradYear = gradYear;
 //        this.bio = bio;
 //        this.interest1 = interest1; this.interest2 = interest2; this.interest3 = interest3;
 
@@ -92,8 +92,8 @@ public class User {
         this.major = major;
     }
 
-    public void editGradYr(Integer gradYr) {
-        this.gradYr = gradYr;
+    public void editgradYear(Integer gradYear) {
+        this.gradYear = gradYear;
     }
 
     public void editEmail(String email) {
@@ -132,8 +132,8 @@ public class User {
         return this.major;
     }
 
-    public Integer getGradYr() {
-        return this.gradYr;
+    public Integer getGradYear() {
+        return this.gradYear;
     }
 
     public void setId(ObjectId id) {
@@ -164,12 +164,12 @@ public class User {
         this.major = major;
     }
 
-    public void setGradYr(Integer gradYr) {
-        this.gradYr = gradYr;
+    public void setgradYear(Integer gradYear) {
+        this.gradYear = gradYear;
     }
 
     public String toString() {
-        return "User(Id=" + this.getId() + ", firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", email=" + this.getEmail() + ", password=" + this.getPassword() + ", age=" + this.getAge() + ", major=" + this.getMajor() + ", gradYr=" + this.getGradYr() + ")";
+        return "User(Id=" + this.getId() + ", firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", email=" + this.getEmail() + ", password=" + this.getPassword() + ", age=" + this.getAge() + ", major=" + this.getMajor() + ", gradYear=" + this.getGradYear() + ")";
     }
 
     public static class UserBuilder {
@@ -180,7 +180,7 @@ public class User {
         private String password;
         private Integer age;
         private String major;
-        private Integer gradYr;
+        private Integer gradYear;
         private ObjectId id;
 
         UserBuilder() {
@@ -221,13 +221,13 @@ public class User {
             return this;
         }
 
-        public UserBuilder gradYr(Integer gradYr) {
-            this.gradYr = gradYr;
+        public UserBuilder gradYear(Integer gradYear) {
+            this.gradYear = gradYear;
             return this;
         }
 
         public String toString() {
-            return "User.UserBuilder(Id=" + this.Id + ", firstName=" + this.firstName + ", lastName=" + this.lastName + ", email=" + this.email + ", password=" + this.password + ", age=" + this.age + ", major=" + this.major + ", gradYr=" + this.gradYr + ")";
+            return "User.UserBuilder(Id=" + this.Id + ", firstName=" + this.firstName + ", lastName=" + this.lastName + ", email=" + this.email + ", password=" + this.password + ", age=" + this.age + ", major=" + this.major + ", gradYear=" + this.gradYear + ")";
         }
 
         public UserBuilder id(ObjectId id) {
@@ -236,7 +236,7 @@ public class User {
         }
 
         public User build() {
-            return new User(this.id, this.firstName, this.lastName, this.email, this.password, this.age, this.major, this.gradYr);
+            return new User(this.id, this.firstName, this.lastName, this.email, this.password, this.age, this.major, this.gradYear);
         }
     }
 

@@ -9,7 +9,7 @@ public class Match {
     private String name;
     private Integer age;
     private String major;
-    private Integer gradYr;
+    private Integer gradYear;
     private List<String> interests = new ArrayList<String>();
     private double score; // compatibility score
 
@@ -17,7 +17,7 @@ public class Match {
         this.name = user.getName('f');
         this.age = user.getAge();
         this.major = user.getMajor();
-        this.gradYr = user.getGradYr();
+        this.gradYear = user.getGradYear();
         // add all 3 interests
 //        this.interests.add(user.getInterest(0)); this.interests.add(user.getInterest(1)); this.interests.add(user.getInterest(2));
         this.score = score;
