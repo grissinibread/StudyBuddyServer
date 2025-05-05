@@ -1,16 +1,32 @@
 package com.studybuddyserver.dtos;
 
 public class UpdateUserRequest {
-    private String id;
     private String firstName;
     private String lastName;
     private String email;
+    private int age;
+    private String major;
+    private int gradYr;
 
-    public UpdateUserRequest() {
+    public UpdateUserRequest(String firstName, String lastName, String email, int age, String major, int gradYr) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.age = age;
+        this.major = major;
+        this.gradYr = gradYr;
     }
 
-    public String getId() {
-        return this.id;
+    public int getAge() {
+        return this.age;
+    }
+
+    public String getMajor() {
+        return this.major;
+    }
+
+    public int getGradYr() {
+        return this.gradYr;
     }
 
     public String getFirstName() {
@@ -25,8 +41,16 @@ public class UpdateUserRequest {
         return this.email;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public void setGradYr(int gradYr) {
+        this.gradYr = gradYr;
     }
 
     public void setFirstName(String firstName) {
@@ -46,9 +70,6 @@ public class UpdateUserRequest {
         if (!(o instanceof UpdateUserRequest)) return false;
         final UpdateUserRequest other = (UpdateUserRequest) o;
         if (!other.canEqual((Object) this)) return false;
-        final Object this$id = this.getId();
-        final Object other$id = other.getId();
-        if (this$id == null ? other$id != null : !this$id.equals(other$id)) return false;
         final Object this$firstName = this.getFirstName();
         final Object other$firstName = other.getFirstName();
         if (this$firstName == null ? other$firstName != null : !this$firstName.equals(other$firstName)) return false;
@@ -58,6 +79,11 @@ public class UpdateUserRequest {
         final Object this$email = this.getEmail();
         final Object other$email = other.getEmail();
         if (this$email == null ? other$email != null : !this$email.equals(other$email)) return false;
+        if (this.getAge() != other.getAge()) return false;
+        final Object this$major = this.getMajor();
+        final Object other$major = other.getMajor();
+        if (this$major == null ? other$major != null : !this$major.equals(other$major)) return false;
+        if (this.getGradYr() != other.getGradYr()) return false;
         return true;
     }
 
@@ -68,18 +94,20 @@ public class UpdateUserRequest {
     public int hashCode() {
         final int PRIME = 59;
         int result = 1;
-        final Object $id = this.getId();
-        result = result * PRIME + ($id == null ? 43 : $id.hashCode());
         final Object $firstName = this.getFirstName();
         result = result * PRIME + ($firstName == null ? 43 : $firstName.hashCode());
         final Object $lastName = this.getLastName();
         result = result * PRIME + ($lastName == null ? 43 : $lastName.hashCode());
         final Object $email = this.getEmail();
         result = result * PRIME + ($email == null ? 43 : $email.hashCode());
+        result = result * PRIME + this.getAge();
+        final Object $major = this.getMajor();
+        result = result * PRIME + ($major == null ? 43 : $major.hashCode());
+        result = result * PRIME + this.getGradYr();
         return result;
     }
 
     public String toString() {
-        return "UpdateUserRequest(id=" + this.getId() + ", firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", email=" + this.getEmail() + ")";
+        return "UpdateUserRequest(firstName=" + this.getFirstName() + ", lastName=" + this.getLastName() + ", email=" + this.getEmail() + ", age=" + this.getAge() + ", major=" + this.getMajor() + ", gradYr=" + this.getGradYr() + ")";
     }
 }

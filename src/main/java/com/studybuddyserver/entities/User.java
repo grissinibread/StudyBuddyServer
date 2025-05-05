@@ -1,16 +1,15 @@
 package com.studybuddyserver.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Entity
 @Document(collection = "SB_users")
 public class User {
     @Id
     @Field("_id")
-    private String Id;
+    private ObjectId id;
 
     @Field("fname")
     private String firstName;
@@ -35,8 +34,8 @@ public class User {
     @Field("gradYear")
     private Integer gradYr;
 
-    public User(String Id, String firstName, String lastName, String email, String password, Integer age, String major, Integer gradYr) {
-        this.Id = Id;
+    public User(ObjectId id, String firstName, String lastName, String email, String password, Integer age, String major, Integer gradYr) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -44,9 +43,6 @@ public class User {
         this.age = age;
         this.major = major;
         this.gradYr = gradYr;
-    }
-
-    public User() {
     }
 
     public static UserBuilder builder() {
@@ -108,8 +104,8 @@ public class User {
         this.password = password;
     }
 
-    public String getId() {
-        return this.Id;
+    public ObjectId getId() {
+        return this.id;
     }
 
     public String getFirstName() {
@@ -140,8 +136,8 @@ public class User {
         return this.gradYr;
     }
 
-    public void setId(String Id) {
-        this.Id = Id;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public void setFirstName(String firstName) {
@@ -185,6 +181,7 @@ public class User {
         private Integer age;
         private String major;
         private Integer gradYr;
+        private ObjectId id;
 
         UserBuilder() {
         }
@@ -229,12 +226,17 @@ public class User {
             return this;
         }
 
-        public User build() {
-            return new User(this.Id, this.firstName, this.lastName, this.email, this.password, this.age, this.major, this.gradYr);
-        }
-
         public String toString() {
             return "User.UserBuilder(Id=" + this.Id + ", firstName=" + this.firstName + ", lastName=" + this.lastName + ", email=" + this.email + ", password=" + this.password + ", age=" + this.age + ", major=" + this.major + ", gradYr=" + this.gradYr + ")";
+        }
+
+        public UserBuilder id(ObjectId id) {
+            this.id = id;
+            return this;
+        }
+
+        public User build() {
+            return new User(this.id, this.firstName, this.lastName, this.email, this.password, this.age, this.major, this.gradYr);
         }
     }
 

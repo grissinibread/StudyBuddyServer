@@ -1,10 +1,12 @@
 package com.studybuddyserver.controllers;
 
 import com.studybuddyserver.dtos.RegisterUserRequest;
+import com.studybuddyserver.dtos.UpdateUserRequest;
 import com.studybuddyserver.dtos.UserDto;
 import com.studybuddyserver.mappers.UserMapper;
 import com.studybuddyserver.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -25,8 +27,8 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getUser(@PathVariable String id) {
-        var user = userRepository.findById(id).orElse(null);
+    public ResponseEntity<UserDto> getUser(@PathVariable ObjectId id) {
+        var user = userRepository.findById(String.valueOf(id)).orElse(null);
         if (user == null)
             return ResponseEntity.notFound().build();
 
@@ -43,6 +45,18 @@ public class UserController {
         var uri = uriBuilder.path("/users/{id}").buildAndExpand(userDto.getId()).toUri();
 
         return ResponseEntity.created(uri).body(userDto);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable ObjectId id, @RequestBody UpdateUserRequest update) {
+        var user = userRepository.findById(String.valueOf(id)).orElse(null);
+        if(user == null)
+            return ResponseEntity.notFound().build();
+
+        userMapper.updateUser(update, user);
+        userRepository.save(user);
+
+        return ResponseEntity.ok(userMapper.toDto(user));
     }
 }
 
