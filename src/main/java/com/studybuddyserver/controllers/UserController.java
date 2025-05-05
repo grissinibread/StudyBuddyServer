@@ -6,7 +6,6 @@ import com.studybuddyserver.dtos.UserDto;
 import com.studybuddyserver.mappers.UserMapper;
 import com.studybuddyserver.repositories.UserRepository;
 import lombok.AllArgsConstructor;
-import org.bson.types.ObjectId;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -27,8 +26,8 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getUser(@PathVariable ObjectId id) {
-        var user = userRepository.findById(String.valueOf(id)).orElse(null);
+    public ResponseEntity<UserDto> getUser(@PathVariable(name = "id") String id) {
+        var user = userRepository.findById(id).orElse(null);
         if (user == null)
             return ResponseEntity.notFound().build();
 
@@ -48,7 +47,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> updateUser(@PathVariable ObjectId id, @RequestBody UpdateUserRequest update) {
+    public ResponseEntity<UserDto> updateUser(@PathVariable String id, @RequestBody UpdateUserRequest update) {
         var user = userRepository.findById(String.valueOf(id)).orElse(null);
         if(user == null)
             return ResponseEntity.notFound().build();
@@ -60,7 +59,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<UserDto> deleteUser(@PathVariable ObjectId id) {
+    public ResponseEntity<UserDto> deleteUser(@PathVariable String id) {
         var user = userRepository.findById(String.valueOf(id)).orElse(null);
         if(user == null)
             return ResponseEntity.notFound().build();
