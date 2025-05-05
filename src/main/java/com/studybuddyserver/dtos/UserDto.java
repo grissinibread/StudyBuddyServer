@@ -1,21 +1,19 @@
 package com.studybuddyserver.dtos;
 
-import org.bson.types.ObjectId;
-
 public class UserDto {
-    private final ObjectId id;
+    private final String id;
     private final String firstName;
     private final String lastName;
     private final String email;
 
-    public UserDto(ObjectId id, String firstName, String lastName, String email) {
+    public UserDto(String id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return this.id;
     }
 

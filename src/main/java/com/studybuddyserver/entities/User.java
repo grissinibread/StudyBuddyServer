@@ -1,6 +1,5 @@
 package com.studybuddyserver.entities;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -11,8 +10,7 @@ import java.util.List;
 @Document(collection = "SB_users")
 public class User {
     @Id
-    @Field("_id")
-    private ObjectId id;
+    private String id;
 
     @Field("fname")
     private String firstName;
@@ -43,7 +41,7 @@ public class User {
     @Field("bio")
     private String bio;
 
-    public User(ObjectId id, String firstName, String lastName, String email, String password, Integer age, String major, Integer gradYear, List<String> interests, String bio) {
+    public User(String id, String firstName, String lastName, String email, String password, Integer age, String major, Integer gradYear, List<String> interests, String bio) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -77,7 +75,7 @@ public class User {
     /// /        this.interests.add(interest1); this.interests.add(interest2); this.interests.add(interest3);
 //        this.email = email; this.password = password;
 //    }
-    public ObjectId getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -117,7 +115,7 @@ public class User {
         return interests;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -174,7 +172,7 @@ public class User {
         private Integer age;
         private String major;
         private Integer gradYear;
-        private ObjectId id;
+        private String id;
         private List<String> interests;
         private String bio;
 
@@ -185,7 +183,7 @@ public class User {
             return "User.UserBuilder(Id=" + this.Id + ", firstName=" + this.firstName + ", lastName=" + this.lastName + ", email=" + this.email + ", password=" + this.password + ", age=" + this.age + ", major=" + this.major + ", gradYear=" + this.gradYear + ")";
         }
 
-        public UserBuilder id(ObjectId id) {
+        public UserBuilder id(String id) {
             this.id = id;
             return this;
         }
