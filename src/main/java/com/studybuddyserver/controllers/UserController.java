@@ -47,7 +47,7 @@ public class UserController {
         return ResponseEntity.created(uri).body(userDto);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<UserDto> updateUser(@PathVariable ObjectId id, @RequestBody UpdateUserRequest update) {
         var user = userRepository.findById(String.valueOf(id)).orElse(null);
         if(user == null)
@@ -58,16 +58,14 @@ public class UserController {
 
         return ResponseEntity.ok(userMapper.toDto(user));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<UserDto> deleteUser(@PathVariable ObjectId id) {
+        var user = userRepository.findById(String.valueOf(id)).orElse(null);
+        if(user == null)
+            return ResponseEntity.notFound().build();
+
+        userRepository.delete(user);
+        return ResponseEntity.ok(userMapper.toDto(user));
+    }
 }
-
-//
-//    @DeleteMapping("/id")
-//    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-//        if(!userRepository.existsById(id)) {
-//            return ResponseEntity.notFound().build();
-//        }
-//        userRepository.deleteById(id);
-//        return ResponseEntity.noContent().build();
-//    }
-
-
