@@ -1,22 +1,22 @@
 package com.studybuddyserver.matching;
 
 import java.util.List;
+import java.util.Iterator;
 
-public class MatchIterator implements MatchIteratorIF {
-    private final List<Match> matches; //hold matches
-    private int index = 0;
+public class MatchIterator implements Iterator<Match> {
+    private final Iterator<Match> iterator;
 
-    //constructor with list to iterate through
     public MatchIterator(List<Match> matches) {
-        this.matches = matches;
+        this.iterator = matches.iterator();
     }
 
     @Override
     public boolean hasNext() {
-        return index < matches.size();
+        return iterator.hasNext();
     }
+
     @Override
-    public Match next() { //returns current moves to next
-        return hasNext() ? matches.get(index++) : null;
+    public Match next() {
+        return iterator.next();
     }
 }
