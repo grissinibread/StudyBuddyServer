@@ -20,6 +20,6 @@ public class Match {
         this.interests = user.getInterests();
         this.rank = score;
     }
-
-    public Double getRank() { return this.rank; }
+    public String getName() { return name;}
+    public Double getRank() { return rank; }
 }
