@@ -28,7 +28,7 @@ public class UserController {
         return dtoFacade.getUserById(id);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<UserDto> login(@RequestBody LoginRequest request) {
         return dtoFacade.login(request);
     }
