@@ -22,7 +22,7 @@ public class UserController {
     private final DtoFacade dtoFacade;
 
     @GetMapping()
-    public Iterable<UserDto> getAllUsers() {
+    public Iterable<PublicUserInfoRequest> getAllUsers() {
         return dtoFacade.getAllUsers();
     }
 

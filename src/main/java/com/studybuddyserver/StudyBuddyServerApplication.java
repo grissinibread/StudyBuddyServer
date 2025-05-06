@@ -1,6 +1,7 @@
 package com.studybuddyserver;
 
 import com.studybuddyserver.controllers.UserController;
+import com.studybuddyserver.dtos.PublicUserInfoRequest;
 import com.studybuddyserver.dtos.UserDto;
 import com.studybuddyserver.entities.User;
 import com.studybuddyserver.matching.Match;
@@ -32,9 +33,9 @@ public class StudyBuddyServerApplication {
 //
 //        repository.save(user);
 
-        Iterable< UserDto> list = userController.getAllUsers();
-        for (UserDto userDto : list) {
-            System.out.println(userDto.getFirstName());
+        Iterable<PublicUserInfoRequest> list = userController.getAllUsers();
+        for (PublicUserInfoRequest publicUserInfoRequest : list) {
+            System.out.println(publicUserInfoRequest.getFirstName());
         }
         System.out.println("list end\n");
 

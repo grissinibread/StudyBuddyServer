@@ -1,5 +1,6 @@
 package com.studybuddyserver.facades;
 
+import com.studybuddyserver.dtos.PublicUserInfoRequest;
 import com.studybuddyserver.dtos.RegisterUserRequest;
 import com.studybuddyserver.dtos.UpdateUserRequest;
 import com.studybuddyserver.dtos.UserDto;
@@ -11,17 +12,17 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.List;
+
 @Component
 @AllArgsConstructor
 public class DtoFacade {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    public Iterable<UserDto> getAllUsers() {
-        return userRepository.findAll()
-                .stream()
-                .map(userMapper::toDto)
-                .toList();
+    @GetMapping()
+    public List<PublicUserInfoRequest> getAllUsers() {
+        return userRepository.findAll().stream().map(userMapper::info).toList();
     }
 
     public ResponseEntity<UserDto> getUser(@PathVariable(name = "id") String id) {
