@@ -1,17 +1,19 @@
 package com.studybuddyserver.controllers;
 
+import com.studybuddyserver.dtos.PublicUserInfoRequest;
 import com.studybuddyserver.dtos.RegisterUserRequest;
 import com.studybuddyserver.dtos.UpdateUserRequest;
 import com.studybuddyserver.dtos.UserDto;
 import com.studybuddyserver.facades.DtoFacade;
+import com.studybuddyserver.entities.User;
 import com.studybuddyserver.mappers.UserMapper;
 import com.studybuddyserver.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.util.stream.Collectors;
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
