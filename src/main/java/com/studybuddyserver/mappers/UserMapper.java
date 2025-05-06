@@ -1,5 +1,6 @@
 package com.studybuddyserver.mappers;
 
+import com.studybuddyserver.dtos.PublicUserInfoRequest;
 import com.studybuddyserver.dtos.RegisterUserRequest;
 import com.studybuddyserver.dtos.UpdateUserRequest;
 import com.studybuddyserver.dtos.UserDto;
@@ -12,6 +13,7 @@ import org.mapstruct.MappingTarget;
 public interface UserMapper {
     UserDto toDto(User user);
     User toEntity(RegisterUserRequest register);
+    PublicUserInfoRequest info(User user);
 
     @Mapping(target = "id", ignore = true)
     void updateUser(UpdateUserRequest updateUserRequest, @MappingTarget User user);

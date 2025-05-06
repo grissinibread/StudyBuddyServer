@@ -1,14 +1,18 @@
 package com.studybuddyserver.controllers;
 
+import com.studybuddyserver.dtos.PublicUserInfoRequest;
 import com.studybuddyserver.dtos.RegisterUserRequest;
 import com.studybuddyserver.dtos.UpdateUserRequest;
 import com.studybuddyserver.dtos.UserDto;
+import com.studybuddyserver.entities.User;
 import com.studybuddyserver.mappers.UserMapper;
 import com.studybuddyserver.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -18,11 +22,8 @@ public class UserController {
     private final UserMapper userMapper;
 
     @GetMapping()
-    public Iterable<UserDto> getAllUsers() {
-        return userRepository.findAll()
-                .stream()
-                .map(userMapper::toDto)
-                .toList();
+    public List<PublicUserInfoRequest> getAllUsers() {
+        return userRepository.findAll().stream().map(userMapper::info).toList();
     }
 
     @GetMapping("/{id}")
