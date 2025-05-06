@@ -26,6 +26,11 @@ public class UserController {
         return dtoFacade.getAllUsers();
     }
 
+    @GetMapping("/{id}/myInfo")
+    public ResponseEntity<PublicUserInfoRequest> getUserById(@PathVariable(name = "id") String id) {
+        return dtoFacade.getUserById(id);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUser(@PathVariable(name = "id") String id) {
         return dtoFacade.getUser(id);

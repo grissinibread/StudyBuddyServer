@@ -25,6 +25,15 @@ public class DtoFacade {
         return userRepository.findAll().stream().map(userMapper::info).toList();
     }
 
+    @GetMapping("/{id}/myInfo")
+    public ResponseEntity<PublicUserInfoRequest> getUserById(@PathVariable(name = "id") String id) {
+        var user = userRepository.findById(id).orElse(null);
+        if(user == null)
+            return null;
+
+        return ResponseEntity.ok(userMapper.info(user));
+    }
+
     public ResponseEntity<UserDto> getUser(@PathVariable(name = "id") String id) {
         var user = userRepository.findById(id).orElse(null);
         if (user == null)
