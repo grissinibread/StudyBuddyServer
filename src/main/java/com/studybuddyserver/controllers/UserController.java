@@ -1,9 +1,6 @@
 package com.studybuddyserver.controllers;
 
-import com.studybuddyserver.dtos.PublicUserInfoRequest;
-import com.studybuddyserver.dtos.RegisterUserRequest;
-import com.studybuddyserver.dtos.UpdateUserRequest;
-import com.studybuddyserver.dtos.UserDto;
+import com.studybuddyserver.dtos.*;
 import com.studybuddyserver.facades.DtoFacade;
 import com.studybuddyserver.entities.User;
 import com.studybuddyserver.mappers.UserMapper;
@@ -29,6 +26,11 @@ public class UserController {
     @GetMapping("/{id}/myInfo")
     public ResponseEntity<PublicUserInfoRequest> getUserById(@PathVariable(name = "id") String id) {
         return dtoFacade.getUserById(id);
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<UserDto> login(@RequestBody LoginRequest request) {
+        return dtoFacade.login(request);
     }
 
     @GetMapping("/{id}")

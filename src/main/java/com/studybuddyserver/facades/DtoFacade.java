@@ -1,9 +1,6 @@
 package com.studybuddyserver.facades;
 
-import com.studybuddyserver.dtos.PublicUserInfoRequest;
-import com.studybuddyserver.dtos.RegisterUserRequest;
-import com.studybuddyserver.dtos.UpdateUserRequest;
-import com.studybuddyserver.dtos.UserDto;
+import com.studybuddyserver.dtos.*;
 import com.studybuddyserver.mappers.UserMapper;
 import com.studybuddyserver.repositories.UserRepository;
 import lombok.AllArgsConstructor;
@@ -20,18 +17,25 @@ public class DtoFacade {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    @GetMapping()
     public List<PublicUserInfoRequest> getAllUsers() {
         return userRepository.findAll().stream().map(userMapper::info).toList();
     }
 
-    @GetMapping("/{id}/myInfo")
     public ResponseEntity<PublicUserInfoRequest> getUserById(@PathVariable(name = "id") String id) {
         var user = userRepository.findById(id).orElse(null);
         if(user == null)
-            return null;
+            return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(userMapper.info(user));
+    }
+
+    public ResponseEntity<UserDto> login(@RequestBody LoginRequest request) {
+        System.out.println("Login endpoint hit");
+        var user = userRepository.findByEmail(request.getEmail());
+        if(user == null || !user.getPassword().equals(request.getPassword()))
+            return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(userMapper.toDto(user)); // or handle login success/failure
     }
 
     public ResponseEntity<UserDto> getUser(@PathVariable(name = "id") String id) {
