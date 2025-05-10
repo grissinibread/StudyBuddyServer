@@ -34,7 +34,7 @@ public class MatchingAlg {
         sortedMatches.sort(Comparator.comparingDouble(Match::getRank).reversed());
 
         return sortedMatches;
-    }
+        }
 
     // actual matching criteria: return a double
     private double rankUser(User user1, User user2){

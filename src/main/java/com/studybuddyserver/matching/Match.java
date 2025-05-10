@@ -21,5 +21,9 @@ public class Match {
         this.rank = score;
     }
     public String getName() { return name;}
+    public Integer getAge() { return age;}
+    public String getMajor() { return major;}
+    public Integer getGradYr() { return gradYr;}
+    public List<String> getInterests() { return interests;}
     public Double getRank() { return rank; }
 }
