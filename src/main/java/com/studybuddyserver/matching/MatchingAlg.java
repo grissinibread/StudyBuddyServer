@@ -22,7 +22,7 @@ public class MatchingAlg {
         List<Match> sortedMatches = new ArrayList<>();
 
         // list of all users except the logged-in user
-        List<User> allUsers = userRepository.findByIdNot(loggedInUser.getId());
+        List<User> allUsers = userRepository.findByEmailNot(loggedInUser.getEmail());
 
         //rank each user and extrapolate info into Match (exclude personal info)
         for (User currentUser : allUsers) {

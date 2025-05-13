@@ -5,25 +5,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Match {
-    private String name;
+    private String firstName;
     private Integer age;
     private String major;
-    private Integer gradYr;
+    private Integer gradYear;
     private List<String> interests = new ArrayList<String>();
     private double rank; // compatibility score
 
     public Match(User user, double score) {
-        this.name = user.getFirstName();
+        this.firstName = user.getFirstName();
         this.age = user.getAge();
         this.major = user.getMajor();
-        this.gradYr = user.getGradYear();
+        this.gradYear = user.getGradYear();
         this.interests = user.getInterests();
         this.rank = score;
     }
-    public String getName() { return name;}
+    public String getFirstName() { return firstName;}
     public Integer getAge() { return age;}
     public String getMajor() { return major;}
-    public Integer getGradYr() { return gradYr;}
+    public Integer getGradYear() { return gradYear;}
     public List<String> getInterests() { return interests;}
     public Double getRank() { return rank; }
 }

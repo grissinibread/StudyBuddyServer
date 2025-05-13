@@ -1,7 +1,10 @@
 package com.studybuddyserver.facades;
 
 import com.studybuddyserver.dtos.*;
+import com.studybuddyserver.entities.User;
 import com.studybuddyserver.mappers.UserMapper;
+import com.studybuddyserver.matching.Match;
+import com.studybuddyserver.matching.MatchingAlg;
 import com.studybuddyserver.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,7 @@ import java.util.List;
 public class DtoFacade {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final MatchingAlg matchingAlg;
 
     public List<PublicUserInfoRequest> getAllUsers() {
         return userRepository.findAll().stream().map(userMapper::info).toList();
@@ -75,5 +79,13 @@ public class DtoFacade {
 
         userRepository.delete(user);
         return ResponseEntity.ok(userMapper.toDto(user));
+    }
+
+    //for matching
+    public List<Match> getMatches(@PathVariable String currentUserIdentifier){
+        System.out.println("Getting matches for user: " + currentUserIdentifier);
+        User loggedInUser = userRepository.findByEmail(currentUserIdentifier);
+        if (loggedInUser == null) { System.out.println("returning null"); return null;}
+        return matchingAlg.returnMatches(loggedInUser);
     }
 }

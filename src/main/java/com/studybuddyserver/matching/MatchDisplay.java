@@ -13,7 +13,7 @@ public class MatchDisplay {
         Iterator<Match> iterator = matchCollection.iterator();
         while(iterator.hasNext()){
             Match match = iterator.next();
-            System.out.println(match.getName());
+            System.out.println(match.getFirstName());
             //TODO: PASS INFO TO BE DISPLAYED MATCH IN DISCOVER GUI
         }
     }

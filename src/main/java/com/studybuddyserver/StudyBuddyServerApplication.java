@@ -5,6 +5,8 @@ import com.studybuddyserver.dtos.PublicUserInfoRequest;
 import com.studybuddyserver.dtos.UserDto;
 import com.studybuddyserver.entities.User;
 import com.studybuddyserver.matching.Match;
+import com.studybuddyserver.matching.MatchCollection;
+import com.studybuddyserver.matching.MatchDisplay;
 import com.studybuddyserver.matching.MatchingAlg;
 import com.studybuddyserver.repositories.UserRepository;
 import org.springframework.boot.SpringApplication;
@@ -43,12 +45,15 @@ public class StudyBuddyServerApplication {
         List<User> users = repository.findAll();
         User loggedIn = users.get(2);
         List<Match> matches = matchingAlg.returnMatches(loggedIn);
+        MatchCollection matchCollection = new MatchCollection(matches);
+        MatchDisplay matchDisplay = new MatchDisplay(matchCollection);
         System.out.println();
         System.out.println("User to be matched: " + loggedIn);
-        int i = 1;
-        for (Match match : matches) {
-            System.out.println("Match " + i +"- Name: " + match.getName()+ ", Rank: " + match.getRank());
-            i++;
-        }
+        matchDisplay.printMatches();
+//        int i = 1;
+//        for (Match match : matches) {
+//            System.out.println("Match " + i +"- Name: " + match.getName()+ ", Rank: " + match.getRank());
+//            i++;
+//        }
     }
 }
