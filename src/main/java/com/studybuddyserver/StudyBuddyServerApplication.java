@@ -50,10 +50,5 @@ public class StudyBuddyServerApplication {
         System.out.println();
         System.out.println("User to be matched: " + loggedIn);
         matchDisplay.printMatches();
-//        int i = 1;
-//        for (Match match : matches) {
-//            System.out.println("Match " + i +"- Name: " + match.getName()+ ", Rank: " + match.getRank());
-//            i++;
-//        }
     }
 }
