@@ -43,7 +43,7 @@ public class StudyBuddyServerApplication {
 
         // get all users
         List<User> users = repository.findAll();
-        User loggedIn = users.get(2);
+        User loggedIn = users.get(3);
         List<Match> matches = matchingAlg.returnMatches(loggedIn);
         MatchCollection matchCollection = new MatchCollection(matches);
         MatchDisplay matchDisplay = new MatchDisplay(matchCollection);

@@ -1,10 +1,7 @@
 package com.studybuddyserver.controllers;
 
 import com.studybuddyserver.matching.Match;
-import com.studybuddyserver.matching.MatchingAlg;
 import com.studybuddyserver.facades.DtoFacade;
-import com.studybuddyserver.repositories.UserRepository;
-import com.studybuddyserver.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
